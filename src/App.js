@@ -14,12 +14,13 @@ class App extends React.Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
-  
-  handleSubmit(name) {
-      console.log(name);
+  handleSubmit(evt) {
+      
 
-    alert(`The name you entered was: ${name}`);
-    name.preventDefault();
+
+    alert(`The email ${this.state.email} you entered the password was: ${this.state.pass}`);
+    evt.preventDefault();
+    this.setState({email: "", pass:"" });
   }
   
 
@@ -27,14 +28,18 @@ class App extends React.Component {
     return (
     <form onSubmit={this.handleSubmit}>
     <label >
+
       Email:
-      <input type="email" name="email" email={this.state.email}
+      <input type="email" 
+      name="email" email={this.state.email} 
       onChange={this.handleChange} />
       Password:
-      <input type="password" name="pass" pass={this.state.pass}
+
+      <input type="password"
+      name="pass" pass={this.state.pass}
       onChange={this.handleChange} />
     </label>
-    <button type="submit" value="Submit" > Add a new person!</button>
+    <input type="submit" value="Submit" />
       </form>
 
   );
