@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { email:'', pass:''};
+ 
+ 
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(evt) {
+    this.setState({ [evt.target.name]: evt.target.value });
+  }
+
+  
+  handleSubmit(name) {
+      console.log(name);
+
+    alert(`The name you entered was: ${name}`);
+    .preventDefault();
+  }
+  
+
+  render() {
+    return (
+    <form onSubmit={this.handleSubmit}>
+    <label >
+      Email:
+      <input type="email" name="email" email={this.state.email}
+      onChange={this.handleChange} />
+      Password:
+      <input type="password" name="pass" pass={this.state.pass}
+      onChange={this.handleChange} />
+    </label>
+    <button type="submit" value="Submit" > Add a new person!</button>
+      </form>
+
   );
-}
+} }
 
 export default App;
