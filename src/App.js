@@ -19,7 +19,7 @@ class App extends React.Component {
       console.log(name);
 
     alert(`The name you entered was: ${name}`);
-    .preventDefault();
+    name.preventDefault();
   }
   
 
