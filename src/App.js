@@ -23,12 +23,7 @@ class App extends React.Component {
  
        const name = {name: this.state.name};
        const pwd = { pwd: this.state.pwd};  
-       
-       
-
-
-
-
+    
 
       console.log(name, pwd);
       this.setState({name: "",pwd: ""});
