@@ -3,7 +3,10 @@ import React from "react";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { inputs:""};
+    this.state = {formData: {
+      name: '',
+      pwd: ''
+  }};
    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,13 +21,21 @@ class App extends React.Component {
 
   handleSubmit = (event) => {
  
-      const datos = {
-        name: this.state.name,
-        pwd: this.state.pwd
-      };
+       const name = {name: this.state.name};
+       const pwd = { pwd: this.state.pwd};  
+       
+       
+
+
+
+
+
+      console.log(name, pwd);
+      this.setState({name: "",pwd: ""});
+     
      
      event.preventDefault();
-     console.log(datos);
+     
 
 
   };
