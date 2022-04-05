@@ -34,18 +34,8 @@ class App extends React.Component {
 
 
   };
-  
-
-
-  //function Saludo(props) {
-    //const isLoggedIn = props.isLoggedIn;
-  //  if (isLoggedIn) {
-    //  return <Bienvenida />;
-   // }
-   // return <UsuarioAnonimo />;
- // }
-     
-        //alert(`The User ${this.state.UserName} you entered the password was: ${this.state.pass}`);
+    
+      //alert(`The User ${this.state.UserName} you entered the password was: ${this.state.pass}`);
       //evt.preventDefault();
       //this.setState({UserName: "", pass:"" });
     
