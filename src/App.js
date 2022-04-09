@@ -28,18 +28,18 @@ class App extends React.Component {
      
     event.preventDefault()
         const name  = this.state.name;
-
        // const errors = this.state.errors;
 
         const  val = this.validation(name);
 
        console.log(val)
+       this.setState({name:""});
         
       //  if (name.length < 4) {
        
         //  errors.push("randon");
         
-      //this.setState({ errors:errors});
+    //  this.setState({ errors:[]});
         
         };
            
@@ -47,24 +47,23 @@ class App extends React.Component {
   
   validation = (name) =>{
     
-    const errors = this.state.errors; 
-
     console.log(name);
 
-    if (name.length < 4) {
+    if (name.length < 4) {      
+      const errors = this.state.errors; 
+      const valor = errors.includes("please, tu password must be mayor 4 digits")
+     console.log(valor);      
+     if (valor === false)  {
+        alert("qwe")
+         errors.push("please, tu password must be mayor 4 digits"); 
+        }   
        
-      errors.push("please, tu password must be mayor 4 digits");
-     
-    this.setState({...this.state.errors, errors});
-
-     return 1
-       
-  } 
+  }
   
 
- 
+ // return 1
   }
-
+ // this.setState({errors: errors});
 
    
 
