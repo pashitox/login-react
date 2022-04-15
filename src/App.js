@@ -5,13 +5,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       name:"",
-      errors:[]  
+      password:"",
+      errorsn:[],
+      errorsp:[]  
   };
    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.validation1 = this.validation1.bind(this);
-    this.validation2 = this.validation2.bind(this);
+    this.valname = this.valname.bind(this);
+    this.valpass1 = this.valpass1.bind(this);
+   // this.valpass2 = this.valpass2.bind(this);
    this.handleDelete = this.handleDelete.bind(this);
   };
 
@@ -29,38 +32,45 @@ class App extends React.Component {
   }
 
   handleSubmit = (e) => {   
-    this.validation1(this.state.name)
-    this.validation2(this.state.name)  
-    const count = this.state.errors;
+    this.valname(this.state.name)
+    this.valpass1(this.state.password) 
+   // this.valpass2(this.state.password) 
+    const countn = this.state.errorsn;
+    const countp = this.state.errorsp;
 
-    const envio = count.length;
+    const envion = countn.length;
+    const enviop = countp.length;
+    const enviox = 0;
 
-    console.log(envio);
+    console.log(envion);
+    console.log(enviop);
     
-    if ( envio === 0) {    
+    if ( envion === enviop && enviop === enviox) { 
+     
       alert ("enviado")
       } else {
        alert("no enviado")
       };
-    this.setState({name:""});    
+    this.setState({name:"", password:""});    
     e.preventDefault()
   };
            
   
   
-  validation1 = (e) => {     
+  valname =(e)=> {     
     const len = e.length
       console.log(len);
+      alert(len)
     if (len < 4) { 
-      const errors = this.state.errors;
-      const valor = errors.includes("please, tu password must be mayor 4 digits")
-      console.log(valor);
-        if (valor === false)  {    
-      const errors = this.state.errors;        
-      errors.push("please, tu password must be mayor 4 digits");
+      const errorsn = this.state.errorsn;
+      const val1 = errorsn.includes("please, tu password must be mayor 4 digits")
+      console.log(val1);
+        if (val1 === false)  {    
+      const errorsn = this.state.errorsn;        
+      errorsn.push("please, tu password must be mayor 4 digits");
         }
         } else {         
-      var ary = this.state.errors;
+      var ary = this.state.errorsn;
      var index = ary.indexOf('please, tu password must be mayor 4 digits'); 
     if (index > -1) { 
       ary.splice(index, 1);
@@ -71,18 +81,17 @@ class App extends React.Component {
     
     }
 
-validation2 = (a) =>{
-
+valpass1=(a)=>{
  if(a.search(/[0-9]/i) < 0) {   
-  const errors = this.state.errors;
-  const valor = errors.includes("Your password must contain at least one digit.")
+  const errorsp = this.state.errorsp;
+  const val2 = errorsp.includes("Your password must contain at least one digit.")
    
-  console.log(valor);
-        if (valor === false)  {    
-      const errors = this.state.errors;        
-      errors.push("Your password must contain at least one digit.");
+  console.log(val2);
+        if (val2 === false)  {    
+      const errorsp = this.state.errorsp;        
+      errorsp.push("Your password must contain at least one digit.");
    } } else {         
-      var ary = this.state.errors;
+      var ary = this.state.errorsp;
      var index = ary.indexOf("Your password must contain at least one digit."); 
     if (index > -1) { 
       ary.splice(index, 1);
@@ -91,19 +100,49 @@ validation2 = (a) =>{
       }
 
     }
-  
-  
-       
+
+   // valpass2=(b)=>{
+//
+   //   const regex = /[A-Z]/g;
+   // const letter = b.match(regex);
+//
+   //   if(letter < 0) {   
+   //    const errorsp = this.state.errorsp;
+   //    const val3 = errorsp.includes("Your password must contain at least one letter")
+   //     
+   //    console.log(val3);
+   //          if (val3 === false)  {    
+   //        const errorsp = this.state.errorsp;        
+   //        errorsp.push("Your password must contain at least one letter");
+   //     } } else {         
+   //        var ary = this.state.errorsp;
+   //       var index = ary.indexOf("Your password must contain at least one letter"); 
+   //      if (index > -1) { 
+   //        ary.splice(index, 1);
+   //      }    // this.setState({errors:[]}); 
+   //       //  e.preventDefault();
+   //        }
+   //  
+   //      }
+  //
+  //
+   //    
       
         
   
  
   render() {
-     const errors = this.state.errors;    
-    const listerros = errors.map((errors,i) =>
+     const errorsn = this.state.errorsn;
+     const errorsp = this.state.errorsp;        
+    const listerros = errorsn.map((errors,i) =>
       <li key={i}>{errors}
       <button onClick={()=>this.handleDelete(i)}>x</button>
        </li>);
+
+    const listerrop = errorsp.map((errors,i) =>
+    <li key={i}>{errors}
+   <button onClick={()=>this.handleDelete(i)}>x</button>
+      </li>);
 
      console.log(listerros);
     return (
@@ -116,10 +155,20 @@ validation2 = (a) =>{
         name="name" 
         value={this.state.name}       
         onChange={this.handleChange} /> 
-      </label>     
-     <button disabled={!this.state.name} type="submit">submit</button>
+      </label> 
+       <ul>{listerros}</ul>
+      <label>Enter your password:
+        <input
+        id="password"
+        type="password" 
+        name="password" 
+        value={this.state.password}       
+        onChange={this.handleChange} /> 
+      </label>   
+      <ul>{listerrop}</ul>     
+     <button disabled={!this.state.name || !this.state.password } type="submit">submit</button>
     </form>
-    <ul>{listerros}</ul>
+    
     </div>
     
 
