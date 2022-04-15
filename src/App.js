@@ -5,13 +5,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       name:"",
-      envio: false,
-      errors:["Your password must contain at least one digit.", "el pepe."]  
+      errors:[]  
   };
    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.validation = this.validation.bind(this);
+    this.validation1 = this.validation1.bind(this);
+    this.validation2 = this.validation2.bind(this);
    this.handleDelete = this.handleDelete.bind(this);
   };
 
@@ -28,79 +28,84 @@ class App extends React.Component {
   this.setState({ errors:errors });
   }
 
-  handleSubmit = (e) => {      
-   const name  = this.state.name;        
-   // const errors = this.state.errors;
-    const val = this.validation(name);
-    console.log(val);    
- //  if (name.length < 4) {
-//  errors.push("randon");
-//  this.setState({ errors:[]});
-      this.setState({name:""});
-       e.preventDefault() 
-        };
+  handleSubmit = (e) => {   
+    this.validation1(this.state.name)
+    this.validation2(this.state.name)  
+    const count = this.state.errors;
+
+    const envio = count.length;
+
+    console.log(envio);
+    
+    if ( envio === 0) {    
+      alert ("enviado")
+      } else {
+       alert("no enviado")
+      };
+    this.setState({name:""});    
+    e.preventDefault()
+  };
            
   
   
-  validation = (e) => {    
-    console.log(e);
+  validation1 = (e) => {     
+    const len = e.length
+      console.log(len);
+    if (len < 4) { 
+      const errors = this.state.errors;
+      const valor = errors.includes("please, tu password must be mayor 4 digits")
+      console.log(valor);
+        if (valor === false)  {    
+      const errors = this.state.errors;        
+      errors.push("please, tu password must be mayor 4 digits");
+        }
+        } else {         
+      var ary = this.state.errors;
+     var index = ary.indexOf('please, tu password must be mayor 4 digits'); 
+    if (index > -1) { 
+      ary.splice(index, 1);
+    }    // this.setState({errors:[]}); 
+     //  e.preventDefault();
       
-    const anch = e.length
-    console.log (anch);    
-   if (anch < 4) {      
-   const errors = this.state.errors;       
-   const valor = errors.includes("please, tu password must be mayor 4 digits");         
-   console.log(valor);
-      
-     if (valor === false)  {
-     const errors = this.state.errors; 
-     alert("qwe")
-      errors.push("please, tu password must be mayor 4 digits"); 
-     }
- 
- //else {
-   //   const errors = this.state.errors;          
-   //   const index = errors.indexOf("please, tu password must be mayor 4 digits");    
-   //   console.log(index);
-   //   errors.splice(index, 1); 
-//
-   // }    
-    } if (e.search(/^[a-zA-Z ]/i) < 0) {
-         const errors = this.state.errors; 
-              const valor = errors.includes("Your password must contain at least one letter.")
-       if (valor === false)  {
-        errors.push("Your password must contain at least one letter.");
       }
-      }
-      if (e.search(/[0-9]/i) < 0) {
-      const errors = this.state.errors;       
-      const valor = errors.includes("Your password must contain at least one digit.")
-      if (valor === false)  {
+    
+    }
+
+validation2 = (a) =>{
+
+ if(a.search(/[0-9]/i) < 0) {   
+  const errors = this.state.errors;
+  const valor = errors.includes("Your password must contain at least one digit.")
+   
+  console.log(valor);
+        if (valor === false)  {    
+      const errors = this.state.errors;        
       errors.push("Your password must contain at least one digit.");
+   } } else {         
+      var ary = this.state.errors;
+     var index = ary.indexOf("Your password must contain at least one digit."); 
+    if (index > -1) { 
+      ary.splice(index, 1);
+    }    // this.setState({errors:[]}); 
+     //  e.preventDefault();
       }
- 
- 
- 
-       //};
+
+    }
   
-
- // return 1
-  };
- // this.setState({errors: errors});
-
-  }
-
-
-  render() {
+  
+       
+      
+        
+  
  
-    const errors = this.state.errors;
+  render() {
+     const errors = this.state.errors;    
     const listerros = errors.map((errors,i) =>
       <li key={i}>{errors}
       <button onClick={()=>this.handleDelete(i)}>x</button>
-      </li>
-      
-    );
-            
+       </li>);
+
+     console.log(listerros);
     return (
    <div>   
      <form onSubmit={this.handleSubmit}>
@@ -112,7 +117,7 @@ class App extends React.Component {
         value={this.state.name}       
         onChange={this.handleChange} /> 
       </label>     
-      <button disabled={!this.state.name} type="submit">submit</button>
+     <button disabled={!this.state.name} type="submit">submit</button>
     </form>
     <ul>{listerros}</ul>
     </div>
