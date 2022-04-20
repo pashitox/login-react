@@ -1,5 +1,7 @@
 
 import  React from "react";
+ import './from.css';
+
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -13,7 +15,7 @@ export default class Login extends React.Component {
    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.valname = this.valname.bind(this);
+    //this.valname = this.valname.bind(this);
     this.valpass = this.valpass.bind(this);
     this.valpass2 = this.valpass2.bind(this);
    this.handleDelete = this.handleDelete.bind(this);
@@ -29,9 +31,13 @@ export default class Login extends React.Component {
    console.log(errors);
   this.setState({ errors:errors });
   };
-
+ 
+    
   handleSubmit = (e) => {   
-    this.valname(this.state.name)
+      this.valname(this.state.name);
+    
+
+
     this.valpass(this.state.password) 
     this.valpass2(this.state.password) 
 
@@ -55,10 +61,11 @@ export default class Login extends React.Component {
     this.setState({name:"", password:""});    
     e.preventDefault()
   };
-           
-  
-  
-  valname =(e)=> {     
+         
+ valname (e){ 
+     
+    alert(e);
+    console.log(e, "juan")
     const len = e.length      
     if (len < 4) { 
       const errorsn = this.state.errorsn;
@@ -78,14 +85,15 @@ export default class Login extends React.Component {
       
       }
     
-    }
+    };
+   
 
     valpass =(a)=> {     
       const lena = a.length      
       if (lena < 4) { 
         const errorsp = this.state.errorsp;
         const vala = errorsp.includes("please, tu password must be mayor 4 digits")
-        console.log(vala);
+       // console.log(vala);
           if (vala === false)  {    
         const errorsp = this.state.errorsp;        
         errorsp.push("please, tu password must be mayor 4 digits");
@@ -105,12 +113,12 @@ export default class Login extends React.Component {
      valpass2=(b)=>{      
     const re = /^[A-Za-z0-9]*([A-Za-z][0-9]|[0-9][A-Za-z])[A-Za-z0-9]*$/i;
     const letter = re.test(b);    
-      console.log(letter);
+     // console.log(letter);
       alert(letter);
        if(letter === false) {   
         const errorsp = this.state.errorsp;
         const val3 = errorsp.includes("Your password must contain at least one letter and one Number")         
-        console.log(val3);
+     //   console.log(val3);
               if (val3 === false)  {    
             const errorsp = this.state.errorsp;        
             errorsp.push("Your password must contain at least one letter and one Number");
