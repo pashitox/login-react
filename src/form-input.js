@@ -1,6 +1,6 @@
 
 import  React from "react";
- import './from.css';
+import './from.css';
 
 
 export default class Login extends React.Component {
@@ -34,10 +34,7 @@ export default class Login extends React.Component {
  
     
   handleSubmit = (e) => {   
-      this.valname(this.state.name);
-    
-
-
+    this.valname(this.state.name)
     this.valpass(this.state.password) 
     this.valpass2(this.state.password) 
 
@@ -85,8 +82,7 @@ export default class Login extends React.Component {
       
       }
     
-    };
-   
+    };  
 
     valpass =(a)=> {     
       const lena = a.length      
@@ -136,28 +132,36 @@ export default class Login extends React.Component {
      const errorsn = this.state.errorsn;
      const errorsp = this.state.errorsp;        
     const listerros = errorsn.map((errors,i) =>
+      <div>
       <li key={i}>{errors}
       <button onClick={()=>this.handleDelete(i)}>x</button>
-       </li>);
+       </li> </div> );
 
     const listerrop = errorsp.map((errors,i) =>
-    <li key={i}>{errors}
+    <div>
+    <li key={i}>{errors}    
    <button onClick={()=>this.handleDelete(i)}>x</button>
-      </li>);
+     </li> </div> );
 
      console.log(listerros);
     return (
-   <div>   
-     <form onSubmit={this.handleSubmit}>
-      <label>Enter your name:
-        <input
+      
+     <div className='App'>   
+     <h2 className="title">Login Form</h2>
+      <form className="form" onSubmit={this.handleSubmit}>
+     <div>
+     <label>Enter your name:
+      <input
         id="name"
         type="text" 
         name="name" 
         value={this.state.name}       
         onChange={this.handleChange} /> 
       </label> 
+      </div>
+      
        <ul>{listerros}</ul>
+       <div>
       <label>Enter your password:
         <input
         id="password"
@@ -165,9 +169,12 @@ export default class Login extends React.Component {
         name="password" 
         value={this.state.password}       
         onChange={this.handleChange} /> 
-      </label>   
+      </label> 
+        </div>
       <ul>{listerrop}</ul>     
-     <button disabled={!this.state.name || !this.state.password } type="submit">submit</button>
+      <div>
+        <button className="button" disabled={!this.state.name || !this.state.password } type="submit">submit</button>
+      </div>     
     </form>    
     </div>    
   );
