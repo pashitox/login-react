@@ -1,6 +1,9 @@
 
 import  React from "react";
 import './from.css';
+import logo from './logo.gif'
+
+
 
 
 export default class Login extends React.Component {
@@ -127,56 +130,61 @@ export default class Login extends React.Component {
            //  e.preventDefault();
             }      
           }
-        
+         //<button onClick={()=>this.handleDelete(i)}>x</button>
+          //<button onClick={()=>this.handleDelete(i)}>x</button>
   render() {
      const errorsn = this.state.errorsn;
      const errorsp = this.state.errorsp;        
     const listerros = errorsn.map((errors,i) =>
-      <div>
-      <li key={i}>{errors}
-      <button onClick={()=>this.handleDelete(i)}>x</button>
-       </li> </div> );
+
+     
+      <li key={i}>{errors}</li> );
 
     const listerrop = errorsp.map((errors,i) =>
+
     <div>
-    <li key={i}>{errors}    
-   <button onClick={()=>this.handleDelete(i)}>x</button>
-     </li> </div> );
+    <li key={i}>{errors}</li></div> );
 
      console.log(listerros);
     return (
+
       
+      <div className="container"> 
+        <img src={logo} alt="loading..." />
      <div className='App'>   
-     <h2 className="title">Login Form</h2>
+     <div className="title">    
+       <h2>Register User</h2>       
+     </div>     
       <form className="form" onSubmit={this.handleSubmit}>
-     <div>
-     <label>Enter your name:
+     <div className="row imput">
+     <label  className="label">Enter your name: </label> 
       <input
         id="name"
         type="text" 
         name="name" 
         value={this.state.name}       
-        onChange={this.handleChange} /> 
-      </label> 
-      </div>
-      
-       <ul>{listerros}</ul>
-       <div>
-      <label>Enter your password:
+        onChange={this.handleChange} />    
+          <div className="error">{listerros}</div>
+           </div>      
+       
+       <div className="row imput"> 
+      <label className="label">Enter your password: </label>
         <input
         id="password"
         type="password" 
         name="password" 
         value={this.state.password}       
-        onChange={this.handleChange} /> 
-      </label> 
-        </div>
-      <ul>{listerrop}</ul>     
-      <div>
-        <button className="button" disabled={!this.state.name || !this.state.password } type="submit">submit</button>
-      </div>     
+        onChange={this.handleChange} />           
+       <div className="error">{listerrop}</div>
+        </div>             
+        <div className="button" >
+        <button className="styles" disabled={!this.state.name || !this.state.password } type="submit">submit</button>
+      </div> 
+       
     </form>    
-    </div>    
+    </div> 
+     <h5 className="Developer"> Developer in React </h5>   
+     </div>  
   );
 } }
 

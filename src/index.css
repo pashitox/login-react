@@ -1,10 +1,14 @@
-body, html{
+ html{
   background: rgb(34,193,195);
-  background: linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+  background: linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgb(88, 77, 242) 100%);
   font-family: "work sans";
   background-repeat: no-repeat;
   height:100%;
   margin: 0;
 }
 
-
+body {
+ 
+  margin: 0px;
+padding: 0px;
+}
