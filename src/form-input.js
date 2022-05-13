@@ -176,7 +176,8 @@ export default class Login extends React.Component {
         value={this.state.password}       
         onChange={this.handleChange} />           
        <div className="error">{listerrop}</div>
-        </div>             
+        </div>
+             
         <div className="button" >
         <button className="styles" disabled={!this.state.name || !this.state.password } type="submit">submit</button>
       </div> 
